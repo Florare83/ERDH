@@ -3,282 +3,283 @@
    ============================================ */
 
 :root {
-  --azul-marino: #1b2a4a;
-  --azul-marino-hover: #253a63;
-  --gris-claro: #f4f5f7;
-  --gris-borde: #e2e5ea;
-  --gris-texto: #4a4f57;
-  --blanco: #ffffff;
+    --azul-marino: #1b2a4a;
+    --azul-marino-hover: #253a63;
+    --gris-claro: #f4f5f7;
+    --gris-borde: #e2e5ea;
+    --gris-texto: #4a4f57;
+    --blanco: #ffffff;
 }
 
 body {
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-  color: var(--gris-texto);
-  background-color: var(--blanco);
+    font-family:
+        "Segoe UI",
+        system-ui,
+        -apple-system,
+        sans-serif;
+    color: var(--gris-texto);
+    background-color: var(--blanco);
 }
 
 /* ---------- Navbar ---------- */
 .navbar-erdh {
-  background-color: var(--azul-marino);
+    background-color: var(--azul-marino);
 }
 
 .navbar-erdh .navbar-brand {
-  font-weight: 700;
-  color: var(--blanco);
-  letter-spacing: 0.02em;
+    font-weight: 700;
+    color: var(--blanco);
+    letter-spacing: 0.02em;
 }
 
 .navbar-erdh .nav-link {
-  color: rgba(255, 255, 255, 0.85);
-  font-weight: 500;
-  margin-left: 0.5rem;
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 500;
+    margin-left: 0.5rem;
 }
 
 .navbar-erdh .nav-link:hover,
 .navbar-erdh .nav-link.active {
-  color: var(--blanco);
+    color: var(--blanco);
 }
 
 .navbar-erdh .nav-link.btn-contacto {
-  background-color: rgba(255, 255, 255, 0.12);
-  border-radius: 6px;
-  padding: 0.4rem 1rem;
+    background-color: rgba(255, 255, 255, 0.12);
+    border-radius: 6px;
+    padding: 0.4rem 1rem;
 }
 
 /* ---------- Secciones ---------- */
 .seccion-titulo {
-  color: var(--azul-marino);
-  font-weight: 700;
-  margin-bottom: 0.5rem;
+    color: var(--azul-marino);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
 }
 
 .seccion-texto {
-  max-width: 60ch;
-}
-
-/* ---------- Placeholder de imagen (mientras no hay foto real) ---------- */
-.img-placeholder {
-  background-color: var(--gris-claro);
-  border: 1px solid var(--gris-borde);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #9aa1ab;
-  aspect-ratio: 4 / 3;
-  width: 100%;
-}
-
-.img-placeholder svg {
-  width: 32px;
-  height: 32px;
+    max-width: 60ch;
 }
 
 /* ---------- Botones estilo "categoría" (Infantil / Familiar / Experto) ---------- */
 .btn-categoria {
-  background-color: var(--azul-marino);
-  color: var(--blanco);
-  border: none;
-  border-radius: 999px;
-  padding: 0.5rem 1.5rem;
-  font-weight: 600;
-  transition: background-color 0.15s ease;
+    background-color: var(--azul-marino);
+    color: var(--blanco);
+    border: none;
+    border-radius: 999px;
+    padding: 0.5rem 1.5rem;
+    font-weight: 600;
+    transition: background-color 0.15s ease;
 }
 
 .btn-categoria:hover,
 .btn-categoria:focus {
-  background-color: var(--azul-marino-hover);
-  color: var(--blanco);
+    background-color: var(--azul-marino-hover);
+    color: var(--blanco);
 }
 
 /* ---------- Tarjetas de bloque (Quiénes somos / Qué ofrecemos) ---------- */
 .card-bloque {
-  border: 1px solid var(--gris-borde);
-  border-radius: 12px;
-  padding: 1.5rem;
-  height: 100%;
+    border: 1px solid var(--gris-borde);
+    border-radius: 12px;
+    padding: 1.5rem;
+    height: 100%;
 }
 
 .card-bloque h2 {
-  font-size: 1.15rem;
-  color: var(--azul-marino);
-  font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--azul-marino);
+    font-weight: 700;
 }
 
 /* ---------- Encabezado de listado (título + subtítulo de categoría) ---------- */
 .titulo-listado {
-  color: var(--azul-marino);
-  font-weight: 700;
-  margin-bottom: 0;
+    color: var(--azul-marino);
+    font-weight: 700;
+    margin-bottom: 0;
 }
 
 .subtitulo-listado {
-  color: var(--gris-texto);
-  font-weight: 500;
+    color: var(--gris-texto);
+    font-weight: 500;
 }
 
 /* ---------- Barra de filtros ---------- */
 .barra-filtros {
-  border: 1px solid var(--gris-borde);
-  border-radius: 10px;
-  padding: 0.6rem 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
+    border: 1px solid var(--gris-borde);
+    border-radius: 10px;
+    padding: 0.6rem 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
 }
 
 .btn-filtro {
-  background-color: var(--blanco);
-  border: 1px solid var(--gris-borde);
-  border-radius: 8px;
-  padding: 0.35rem 0.75rem;
-  font-weight: 600;
-  color: var(--gris-texto);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
+    background-color: var(--blanco);
+    border: 1px solid var(--gris-borde);
+    border-radius: 8px;
+    padding: 0.35rem 0.75rem;
+    font-weight: 600;
+    color: var(--gris-texto);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
 }
 
 .pill-todos {
-  background-color: var(--azul-marino);
-  color: var(--blanco);
-  border-radius: 999px;
-  padding: 0.3rem 1rem;
-  font-weight: 600;
-  font-size: 0.9rem;
+    background-color: var(--azul-marino);
+    color: var(--blanco);
+    border-radius: 999px;
+    padding: 0.3rem 1rem;
+    font-weight: 600;
+    font-size: 0.9rem;
 }
 
 .meta-filtro {
-  color: #7a828d;
-  font-size: 0.9rem;
-  margin-left: auto;
+    color: #7a828d;
+    font-size: 0.9rem;
+    margin-left: auto;
 }
 
 /* ---------- Tarjeta de juego ---------- */
 .game-card {
-  border: 1px solid var(--gris-borde);
-  border-radius: 12px;
-  overflow: hidden;
-  height: 100%;
-  background-color: var(--blanco);
+    border: 1px solid var(--gris-borde);
+    border-radius: 12px;
+    overflow: hidden;
+    height: 100%;
+    background-color: var(--blanco);
 }
 
 .game-card .img-placeholder {
-  border-radius: 0;
-  border: none;
-  border-bottom: 1px solid var(--gris-borde);
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid var(--gris-borde);
 }
 
 .game-card-body {
-  padding: 1rem;
+    padding: 1rem;
 }
 
 .game-card-body h3 {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--azul-marino);
-  margin-bottom: 0.15rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--azul-marino);
+    margin-bottom: 0.15rem;
 }
 
 .game-card-body .editorial {
-  font-size: 0.85rem;
-  color: #7a828d;
-  margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+    color: #7a828d;
+    margin-bottom: 0.5rem;
 }
 
 .game-card-meta {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-size: 0.85rem;
-  color: var(--gris-texto);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--gris-texto);
 }
 
 .game-card-meta li {
-  display: flex;
-  justify-content: space-between;
-  padding: 0.15rem 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.15rem 0;
 }
 
 .game-card-precio {
-  font-weight: 700;
-  color: var(--azul-marino);
-  font-size: 1.05rem;
-  margin-top: 0.5rem;
+    font-weight: 700;
+    color: var(--azul-marino);
+    font-size: 1.05rem;
+    margin-top: 0.5rem;
 }
 
 /* ---------- Eventos ---------- */
 .evento-item {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  border: 1px solid var(--gris-borde);
-  border-radius: 12px;
-  padding: 1rem;
-  margin-bottom: 1rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    border: 1px solid var(--gris-borde);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1rem;
 }
 
 .evento-item .img-placeholder {
-  width: 90px;
-  min-width: 90px;
-  aspect-ratio: 1 / 1;
+    width: 90px;
+    min-width: 90px;
+    aspect-ratio: 1 / 1;
 }
 
 .evento-item h3 {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--azul-marino);
-  margin-bottom: 0.25rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--azul-marino);
+    margin-bottom: 0.25rem;
 }
 
 .evento-item p {
-  margin-bottom: 0;
-  font-size: 0.9rem;
-  color: var(--gris-texto);
+    margin-bottom: 0;
+    font-size: 0.9rem;
+    color: var(--gris-texto);
 }
 
 /* ---------- FAQ (acordeón) ---------- */
 .accordion-erdh .accordion-button {
-  font-weight: 600;
-  color: var(--azul-marino);
+    font-weight: 600;
+    color: var(--azul-marino);
 }
 
 .accordion-erdh .accordion-button:not(.collapsed) {
-  background-color: var(--gris-claro);
-  color: var(--azul-marino);
+    background-color: var(--gris-claro);
+    color: var(--azul-marino);
 }
 
 .accordion-erdh .accordion-button:focus {
-  box-shadow: 0 0 0 3px #6ea8fe;
+    box-shadow: 0 0 0 3px #6ea8fe;
 }
 
 /* ---------- Formulario de contacto ---------- */
 .form-contacto label {
-  font-weight: 600;
-  color: var(--azul-marino);
+    font-weight: 600;
+    color: var(--azul-marino);
 }
 
 /* ---------- Footer ---------- */
 .footer-erdh {
-  background-color: var(--azul-marino);
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 0.9rem;
+    background-color: var(--azul-marino);
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.9rem;
 }
 
 .footer-erdh a {
-  color: rgba(255, 255, 255, 0.9);
-  text-decoration: none;
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
 }
 
 .footer-erdh a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 /* ---------- Accesibilidad: foco visible ---------- */
 a:focus-visible,
 button:focus-visible {
-  outline: 3px solid #6ea8fe;
-  outline-offset: 2px;
+    outline: 3px solid #6ea8fe;
+    outline-offset: 2px;
+}
+
+
+.img-placeholder {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.img-placeholder img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
