@@ -4,20 +4,20 @@ Documento de seguimiento de las auditorías de accesibilidad y rendimiento reali
 
 > Completar esta tabla después de correr Lighthouse en cada página (DevTools → pestaña Lighthouse → Analyze page load).
 
-| Vista | Accesibilidad (antes → después) | Rendimiento | Cambios realizados |
-|---|---|---|---|
-| Nosotros (index.html) | — → — | — | |
-| Club (club.html) | — → — | — | |
-| Préstamo Infantil | — → — | — | |
-| Préstamo Familiar | — → — | — | |
-| Préstamo Experto | — → — | — | |
-| Tienda | — → — | — | |
-| Venta Infantil | — → — | — | |
-| Venta Familiar | — → — | — | |
-| Venta Experto | — → — | — | |
-| Eventos | — → — | — | |
-| Preguntas Frecuentes | — → — | — | |
-| Contacto | — → — | — | |
+| Vista                 | Accesibilidad (antes → después) | Rendimiento | Cambios realizados |
+| --------------------- | ------------------------------- | ----------- | ------------------ |
+| Nosotros (index.html) | — → —                           | —           |                    |
+| Club (club.html)      | — → —                           | —           |                    |
+| Préstamo Infantil     | — → —                           | —           |                    |
+| Préstamo Familiar     | — → —                           | —           |                    |
+| Préstamo Experto      | — → —                           | —           |                    |
+| Tienda                | — → —                           | —           |                    |
+| Venta Infantil        | — → —                           | —           |                    |
+| Venta Familiar        | — → —                           | —           |                    |
+| Venta Experto         | — → —                           | —           |                    |
+| Eventos               | — → —                           | —           |                    |
+| Preguntas Frecuentes  | — → —                           | —           |                    |
+| Contacto              | — → —                           | —           |                    |
 
 ## Notas generales
 
