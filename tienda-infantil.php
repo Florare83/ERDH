@@ -1,52 +1,17 @@
 <!doctype html>
-<html lang="es">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>El Rincón de Hermes — Juegos a la Venta (Infantil)</title>
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-        />
-        <link href="css/estilos.css" rel="stylesheet" />
-    </head>
-    <body>
-        <nav class="navbar navbar-expand-md navbar-erdh navbar-dark py-3">
-            <div class="container">
-                <a class="navbar-brand" href="index.html">El Rincón de Hermes</a>
-                <button
-                    class="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#menuPrincipal"
-                    aria-controls="menuPrincipal"
-                    aria-expanded="false"
-                    aria-label="Abrir menú de navegación"
-                >
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="menuPrincipal">
-                    <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Nosotros</a></li>
-                        <li class="nav-item"><a class="nav-link" href="club.html">Club</a></li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="juegos.html"
-                                >Juegos</a
-                            >
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="faq.html">FAQ</a>
-                        </li>   
-                        <li class="nav-item">
-                            <a class="nav-link btn-contacto" href="contacto.html">Contacto</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+<?php
+
+$titulo_pagina = "El Rincón de Hermes — Tienda Infantil";
+
+$pagina_actual = "juegos.php";
+
+require_once 'includes/header.php';
+require_once 'includes/nav.php';
+
+?>
 
         <main class="container py-5">
-            <h1 class="titulo-listado h3">Juegos</h1>
+            <h1 class="titulo-listado h3">Tienda</h1>
             <p class="subtitulo-listado mb-4">Infantil</p>
 
             <nav aria-label="Filtrar por categoría" class="barra-filtros">
@@ -149,14 +114,7 @@
             </div>
         </main>
 
-        <footer class="footer-erdh py-4 mt-5">
-            <div
-                class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2"
-            >
-                <span>&copy; 2026 El Rincón de Hermes</span>
-                <a href="contacto.html">Contactanos</a>
-            </div>
-        </footer>
+<?php require_once 'includes/footer.php'; ?>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="js/main.js"></script>

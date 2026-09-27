@@ -1,53 +1,18 @@
 <!doctype html>
-<html lang="es">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>El Rincón de Hermes — Juegos a la Venta (Familiar)</title>
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-        />
-        <link href="css/estilos.css" rel="stylesheet" />
-    </head>
-    <body>
-        <nav class="navbar navbar-expand-md navbar-erdh navbar-dark py-3">
-            <div class="container">
-                <a class="navbar-brand" href="index.html">El Rincón de Hermes</a>
-                <button
-                    class="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#menuPrincipal"
-                    aria-controls="menuPrincipal"
-                    aria-expanded="false"
-                    aria-label="Abrir menú de navegación"
-                >
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="menuPrincipal">
-                    <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Nosotros</a></li>
-                        <li class="nav-item"><a class="nav-link" href="club.html">Club</a></li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="juegos.html"
-                                >Juegos</a
-                            >
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="faq.html">FAQ</a>
-                        </li>   
-                        <li class="nav-item">
-                            <a class="nav-link btn-contacto" href="contacto.html">Contacto</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+<?php
+
+$titulo_pagina = "El Rincón de Hermes — Préstamo Experto";
+
+$pagina_actual = "juegos.php";
+
+require_once 'includes/header.php';
+require_once 'includes/nav.php';
+
+?>
 
         <main class="container py-5">
-            <h1 class="titulo-listado h3">Juegos</h1>
-            <p class="subtitulo-listado mb-4">Familiar</p>
+            <h1 class="titulo-listado h3">Préstamo</h1>
+            <p class="subtitulo-listado mb-4">Experto</p>
 
             <nav aria-label="Filtrar por categoría" class="barra-filtros">
                 <button type="button" class="btn-filtro" aria-pressed="false">
@@ -78,19 +43,19 @@
                             aria-label="Portada de juego infantil, tablero de estrategia"
                         >
                         <img 
-                            src="img/esquinados.webp"
-                            alt="Juego Esquinados"
+                            src="img/faraway.webp"
+                            alt="Juego Faraway"
                         >
                         </div>
                         <div class="game-card-body">
-                            <h3>Esquinados</h3>
-                            <p class="editorial">Maldon</p>
+                            <h3>Faraway</h3>
+                            <p class="editorial">Devir</p>
                             <ul class="game-card-meta">
                                 <li><span>Jugadores</span><span>2-6</span></li>
                                 <li><span>Duración</span><span>60-120 min</span></li>
                                 <li><span>Edad</span><span>12+</span></li>
                             </ul>
-                            <p class="game-card-precio">$60.000</p>
+                            <p class="game-card-precio">$30.000</p>
                         </div>
                     </article>
                 </div>
@@ -102,19 +67,19 @@
                             aria-label="Portada de juego infantil, tablero de estrategia"
                         >
                         <img 
-                            src="img/catan.webp"
-                            alt="Juego Catan"
+                            src="img/exit.webp"
+                            alt="Juego Exit"
                         >
                         </div>
                         <div class="game-card-body">
-                            <h3>Catan</h3>
-                            <p class="editorial">Devir</p>
+                            <h3>Exit</h3>
+                            <p class="editorial">Editorial</p>
                             <ul class="game-card-meta">
                                 <li><span>Jugadores</span><span>2-6</span></li>
                                 <li><span>Duración</span><span>60-120 min</span></li>
                                 <li><span>Edad</span><span>12+</span></li>
                             </ul>
-                            <p class="game-card-precio">$67.888</p>
+                            <p class="game-card-precio">$45.000</p>
                         </div>
                     </article>
                 </div>
@@ -126,33 +91,26 @@
                             aria-label="Portada de juego infantil, tablero de estrategia"
                         >
                         <img 
-                            src="img/carcassonne.webp"
-                            alt="Juego Carcassonne"
+                            src="img/ierusalem.webp"
+                            alt="Juego Ierusalem"
                         >
                         </div>
                         <div class="game-card-body">
-                            <h3>Carcassone</h3>
+                            <h3>Ierusalem</h3>
                             <p class="editorial">Devir</p>
                             <ul class="game-card-meta">
                                 <li><span>Jugadores</span><span>2-6</span></li>
                                 <li><span>Duración</span><span>60-120 min</span></li>
                                 <li><span>Edad</span><span>12+</span></li>
                             </ul>
-                            <p class="game-card-precio">$70.000</p>
+                            <p class="game-card-precio">$90.000</p>
                         </div>
                     </article>
                 </div>
             </div>
         </main>
 
-        <footer class="footer-erdh py-4 mt-5">
-            <div
-                class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2"
-            >
-                <span>&copy; 2026 El Rincón de Hermes</span>
-                <a href="contacto.html">Contactanos</a>
-            </div>
-        </footer>
+<?php require_once 'includes/footer.php'; ?>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="js/main.js"></script>
