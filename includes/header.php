@@ -1,3 +1,9 @@
+<?php
+
+require_once __DIR__ . '/../config/env.php';
+
+?>
+
 <!doctype html>
 <html lang="es">
     <head>

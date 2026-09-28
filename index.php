@@ -11,9 +11,9 @@ require_once 'includes/nav.php';
 
 <main class="container py-5">
 
-    <h1 class="visually-hidden">
-        El Rincón de Hermes — Quiénes somos y qué ofrecemos
-    </h1>
+<h1 class="visually-hidden">
+    <?= $nombre_sitio ?> — Quiénes somos y qué ofrecemos
+</h1>
 
     <!-- Bloque: Quiénes somos -->
     <section
