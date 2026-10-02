@@ -1,7 +1,7 @@
 # Descripción
-Aplicación web para el club y tienda de juegos de mesa El Rincón de Hermes, desarrollada originalmente a partir de los wireframes y el mockup diseñados en Figma en trabajos prácticos anteriores.
+Aplicación web para el club y tienda de juegos de mesa El Rincón de Hermes, desarrollada a partir de los wireframes y el mockup diseñados en Figma en trabajos prácticos anteriores.
 
-Como parte de la Unidad 4, el proyecto fue refactorizado de páginas HTML independientes a una estructura basada en PHP, incorporando plantillas reutilizables mediante header.php, nav.php y footer.php, navegación dinámica y configuración mediante variables de entorno.
+El proyecto fue refactorizado de páginas HTML independientes a una estructura basada en PHP, incorporando plantillas reutilizables mediante header.php, nav.php y footer.php, navegación dinámica y configuración mediante variables de entorno.
 
 ## Enlaces
 Repositorio: https://github.com/Florare83/ERDH
@@ -9,13 +9,13 @@ Wireframes y Mockups en Figma: https://www.figma.com/design/hipG4LOssrktKAuL9P4V
 
 ## Tecnologías utilizadas
 HTML5 — estructura semántica de las vistas.
-CSS3 — estilos personalizados mediante css/estilos.css.
+CSS3 — estilos personalizados mediante estilos css.
 Bootstrap 5.3 — sistema de grillas, navegación y componentes.
 JavaScript — funcionalidades e interacción del sitio.
-PHP 8.x — refactorización de las páginas y generación de contenido dinámico.
+PHP — refactorización de las páginas y generación de contenido dinámico.
 XAMPP — servidor local utilizado para ejecutar Apache y PHP.
 Prettier — formateo automático del código.
-Lighthouse (Chrome DevTools) — auditoría de accesibilidad y rendimiento.
+Lighthouse (Chrome DevTools) — auditoría de accesibilidad.
 
 ## Refactorización a PHP
 Durante la refactorización se reemplazaron las páginas HTML por archivos PHP.
@@ -59,58 +59,41 @@ La carpeta node_modules/ no se incluye en el repositorio porque sus dependencias
 1. Clonar el repositorio
 git clone https://github.com/Florare83/ERDH.git
 2. Colocar el proyecto en XAMPP
-
 Copiar o clonar el proyecto dentro de la carpeta:
-
 C:\xampp\htdocs\
-
-Por ejemplo:
-
-C:\xampp\htdocs\ERDH
-3. Crear el archivo .env
-
 Copiar .env.example y crear un archivo .env en la raíz del proyecto.
-
 Configurar las variables correspondientes:
-
 APP_NAME="El Rincón de Hermes"
 APP_EMAIL="email@ejemplo.com"
 APP_ENV=local
 4. Iniciar XAMPP
-
 Abrir el panel de XAMPP e iniciar:
-
 Apache
 5. Abrir el proyecto
-
 Ingresar desde el navegador a:
-
 http://localhost/ERDH/index.php
-Evidencia de funcionamiento
-Servidor local ejecutándose
 
-Captura del sitio funcionando mediante XAMPP y accediendo desde el navegador a localhost.
+## Servidor local ejecutándose
+![Servidor](img/servidor_local.png)
 
-
-## Estructura modular SSI
-La siguiente captura muestra la utilización de las plantillas PHP reutilizables:
-
+## Estructura Modular (SSI):
+Utilización de las plantillas PHP reutilizables:
 header.php
 nav.php
 footer.php
+![SSI](img/ssi.png)
 
 ## Navegación dinámica
 Las páginas utilizan un título dinámico mediante $titulo_pagina y determinan la sección activa del menú mediante $pagina_actual.
+![Navegacion1](img/navegacion_club.png)
+![Navegacion2](img/navegacion_juegos.png)
 
-Configuración de variables de entorno
-
+## Configuración de variables de entorno
 El archivo .env.example contiene las variables necesarias para la configuración del proyecto.
+![env](img/env.png)
 
 ## Resultado de la prueba de accesibilidad
 ![Accesibilidad](img/accesibilidad.png)
 
-## Servidor local XAMPP
-![Servidor](img/servidor_locañ.png)
-
-## Estructura del proyecto actual
+## ## Estructura
 ![Estructura](img/estructura.png)
