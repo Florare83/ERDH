@@ -1,11 +1,16 @@
+<?php
+$pagina_actual = $pagina_actual ?? basename($_SERVER['PHP_SELF']);
+?>
+
+<header>
 <nav class="navbar navbar-expand-md navbar-erdh navbar-dark py-3">
     <div class="container">
 
-        <img src="img/logo.png" alt="Logo de El Rincón de Hermes" />
+    <img src="img/logo.png" alt="Logo de <?= htmlspecialchars($nombre_sitio) ?>" />
 
-        <a class="navbar-brand" href="index.php">
-            El Rincón de Hermes
-        </a>
+    <a class="navbar-brand" href="index.php">
+        <?= htmlspecialchars($nombre_sitio) ?>
+    </a>
 
         <button
             class="navbar-toggler"
@@ -74,3 +79,4 @@
         </div>
     </div>
 </nav>
+</header>

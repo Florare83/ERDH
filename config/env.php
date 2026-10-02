@@ -31,3 +31,8 @@ if (file_exists($archivo_env)) {
 $nombre_sitio = $_ENV['APP_NAME'] ?? 'El Rincón de Hermes';
 $email_contacto = $_ENV['APP_EMAIL'] ?? '';
 $entorno = $_ENV['APP_ENV'] ?? 'local';
+
+if ($entorno === 'local') {
+    ini_set('display_errors', '1');
+    error_reporting(E_ALL);
+}

@@ -8,51 +8,38 @@ Repositorio: https://github.com/Florare83/ERDH
 Wireframes y Mockups en Figma: https://www.figma.com/design/hipG4LOssrktKAuL9P4VDI/ERDH?node-id=16-458&t=eVWlSxP531yBRfNM-1
 
 ## Tecnologías utilizadas
-HTML5 — estructura semántica de las vistas.
-CSS3 — estilos personalizados mediante estilos css.
-Bootstrap 5.3 — sistema de grillas, navegación y componentes.
-JavaScript — funcionalidades e interacción del sitio.
-PHP — refactorización de las páginas y generación de contenido dinámico.
-XAMPP — servidor local utilizado para ejecutar Apache y PHP.
-Prettier — formateo automático del código.
-Lighthouse (Chrome DevTools) — auditoría de accesibilidad.
+- HTML5 — estructura semántica de las vistas.
+- CSS3 — estilos personalizados mediante estilos css.
+- Bootstrap 5.3 — sistema de grillas, navegación y componentes.
+- JavaScript — funcionalidades e interacción del sitio.
+- PHP 8.x — refactorización de las páginas y generación de contenido dinámico.
+- XAMPP — servidor local utilizado para ejecutar Apache y PHP.
+- Prettier — formateo automático del código.
+- Lighthouse (Chrome DevTools) — auditoría de accesibilidad.
 
 ## Refactorización a PHP
 Durante la refactorización se reemplazaron las páginas HTML por archivos PHP.
-
 Se implementó una estructura modular mediante plantillas reutilizables:
-
 includes/
 ├── header.php
 ├── nav.php
 └── footer.php
-
 Las páginas principales reutilizan estas plantillas mediante require_once, evitando repetir el código del encabezado, menú de navegación y pie de página.
-
 También se implementó navegación dinámica mediante la variable $pagina_actual, que permite determinar qué sección del menú debe mostrarse como activa.
-
 Además, el título de cada página se establece mediante la variable $titulo_pagina.
 
 ## Variables de entorno
 El proyecto utiliza un archivo .env para almacenar valores de configuración.
-
 Las variables utilizadas son:
-
 APP_NAME="El Rincón de Hermes"
 APP_EMAIL="email@ejemplo.com"
 APP_ENV=local
-
 El archivo .env no se incluye en el repositorio y está excluido mediante .gitignore.
-
 Para indicar las variables necesarias para ejecutar el proyecto se incluye el archivo:
-
 .env.example
-
 La configuración es cargada desde:
-
 config/
 └── env.php
-
 La carpeta node_modules/ no se incluye en el repositorio porque sus dependencias pueden instalarse nuevamente mediante npm.
 
 ## Instalación y ejecución local
@@ -61,6 +48,7 @@ git clone https://github.com/Florare83/ERDH.git
 2. Colocar el proyecto en XAMPP
 Copiar o clonar el proyecto dentro de la carpeta:
 C:\xampp\htdocs\
+3. Crear archivo .env
 Copiar .env.example y crear un archivo .env en la raíz del proyecto.
 Configurar las variables correspondientes:
 APP_NAME="El Rincón de Hermes"
@@ -95,5 +83,5 @@ El archivo .env.example contiene las variables necesarias para la configuración
 ## Resultado de la prueba de accesibilidad
 ![Accesibilidad](img/accesibilidad.png)
 
-## ## Estructura
+## Estructura
 ![Estructura](img/estructura.png)

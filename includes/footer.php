@@ -1,11 +1,9 @@
 <footer class="footer-erdh py-4 mt-5">
-    <div
-        class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2"
-    >
-        <span>&copy; 2026 El Rincón de Hermes</span>
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+        <span>&copy; <?= date('Y') ?> <?= htmlspecialchars($nombre_sitio) ?></span>
 
-        <a href="contacto.php">
-            Contactanos
+        <a href="mailto:<?= htmlspecialchars($email_contacto) ?>">
+            <?= htmlspecialchars($email_contacto) ?>
         </a>
     </div>
 </footer>

@@ -1,2 +1,2 @@
-// El Rincón de Hermes — lógica del sitio
-// (Por ahora vacío: en esta etapa el sitio es solo maquetación estática)
+   // El Rincón de Hermes — lógica del sitio
+   // (Sin funcionalidad propia por ahora; Bootstrap maneja la interacción del menú)
