@@ -68,6 +68,15 @@ $pagina_actual = $pagina_actual ?? basename($_SERVER['PHP_SELF']);
 
                 <li class="nav-item">
                     <a
+                        class="nav-link btn-buscar <?= $pagina_actual === 'buscar.php' ? 'active' : '' ?>"
+                        href="buscar.php"
+                    >
+                        Buscar
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a
                         class="nav-link btn-contacto <?= $pagina_actual === 'contacto.php' ? 'active' : '' ?>"
                         href="contacto.php"
                     >

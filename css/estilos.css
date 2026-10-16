@@ -1,6 +1,4 @@
-/* ============================================
-   El Rincón de Hermes — Estilos personalizados
-   ============================================ */
+
 
 :root {
     --azul-marino: #1b2a4a;
@@ -283,3 +281,9 @@ button:focus-visible {
     object-fit: cover;
     display: block;
 }
+
+
+
+.alerta { padding: 1rem; margin: 1rem 0; border-radius: 6px; }
+.alerta.error { background: #fdecea; color: #b71c1c; border: 1px solid #f5c6cb; }
+.alerta.exito { background: #e8f5e9; color: #1b5e20; border: 1px solid #c8e6c9; }

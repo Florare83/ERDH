@@ -85,3 +85,25 @@ El archivo .env.example contiene las variables necesarias para la configuración
 
 ## Estructura
 ![Estructura](img/estructura.png)
+
+## Clase 5 – Procesamiento de Formularios y Seguridad Web
+
+### Formulario POST – Contacto (`contacto.php`)
+Formulario con nombre, correo y mensaje. Valida en servidor que los campos
+no estén vacíos y que el correo tenga formato válido. Sanitiza con
+`trim()` y `htmlspecialchars()`. Ante errores conserva los datos ingresados.
+
+### Formulario GET – Buscador (`buscar.php`)
+Módulo de búsqueda que recibe el término por `$_GET['q']`, lo sanitiza,
+valida que no esté vacío y muestra los resultados coincidentes.
+
+### Seguridad
+Todas las variables de `$_POST` y `$_GET` se sanitizan con la función
+`limpiar()` (`includes/funciones.php`) para prevenir XSS.
+
+### Capturas
+![Validación con errores](img/error-validacion.png)
+![Envío exitoso](img/exito.png)
+![Prueba XSS](img/xss.png)
+![Búsqueda GET](img/busquedaget.png)
+![Búsqueda XSS](img/busquedaxss.png)
