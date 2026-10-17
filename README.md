@@ -49,7 +49,7 @@ git clone https://github.com/Florare83/ERDH.git
 Copiar o clonar el proyecto dentro de la carpeta:
 C:\xampp\htdocs\
 3. Crear archivo .env
-Copiar .env.example y crear un archivo .env en la raíz del proyecto.
+Copiar .env.example y crear un archivo .env
 Configurar las variables correspondientes:
 APP_NAME="El Rincón de Hermes"
 APP_EMAIL="email@ejemplo.com"
@@ -59,32 +59,32 @@ Abrir el panel de XAMPP e iniciar:
 Apache
 5. Abrir el proyecto
 Ingresar desde el navegador a:
-http://localhost/ERDH/index.php
+http://localhost/ERDH/clase5/index.php
 
 ## Servidor local ejecutándose
-![Servidor](img/servidor_local.png)
+![Servidor](clase5/img/servidor_local.png)
 
 ## Estructura Modular (SSI):
 Utilización de las plantillas PHP reutilizables:
 header.php
 nav.php
 footer.php
-![SSI](img/ssi.png)
+![SSI](clase5/img/ssi.png)
 
 ## Navegación dinámica
 Las páginas utilizan un título dinámico mediante $titulo_pagina y determinan la sección activa del menú mediante $pagina_actual.
-![Navegacion1](img/navegacion_club.png)
-![Navegacion2](img/navegacion_juegos.png)
+![Navegacion1](clase5/img/navegacion_club.png)
+![Navegacion2](clase5/img/navegacion_juegos.png)
 
 ## Configuración de variables de entorno
 El archivo .env.example contiene las variables necesarias para la configuración del proyecto.
-![env](img/env.png)
+![env](clase5/img/env.png)
 
 ## Resultado de la prueba de accesibilidad
-![Accesibilidad](img/accesibilidad.png)
+![Accesibilidad](clase5/img/accesibilidad.png)
 
 ## Estructura
-![Estructura](img/estructura.png)
+![Estructura](clase5/img/estructura.png)
 
 ## Clase 5 – Procesamiento de Formularios y Seguridad Web
 
@@ -102,8 +102,9 @@ Todas las variables de `$_POST` y `$_GET` se sanitizan con la función
 `limpiar()` (`includes/funciones.php`) para prevenir XSS.
 
 ### Capturas
-![Validación con errores](img/error-validacion.png)
-![Envío exitoso](img/exito.png)
-![Prueba XSS](img/xss.png)
-![Búsqueda GET](img/busquedaget.png)
-![Búsqueda XSS](img/busquedaxss.png)
+![Validación con errores](clase5/img/error-validacion.png)
+![Envío exitoso](clase5/img/exito.png)
+![Prueba XSS](clase5/img/xss.png)
+![Búsqueda GET](clase5/img/busquedaget.png)
+![Búsqueda XSS](clase5/img/busquedaxss.png)
+
