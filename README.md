@@ -102,9 +102,31 @@ Todas las variables de `$_POST` y `$_GET` se sanitizan con la función
 `limpiar()` (`includes/funciones.php`) para prevenir XSS.
 
 ### Capturas
-![Validación con errores](clase5/img/error-validacion.png)
-![Envío exitoso](clase5/img/exito.png)
-![Prueba XSS](clase5/img/xss.png)
-![Búsqueda GET](clase5/img/busquedaget.png)
-![Búsqueda XSS](clase5/img/busquedaxss.png)
 
+**1. Contacto vacío: errores de validación**
+
+![Contacto vacío, aparecen los errores](clase5/img/error_validacion.png)
+
+**2. Correo inválido: error de formato y campos conservados**
+
+![Correo abc, error de formato y los campos se conservan](clase5/img/validacion_correo.png)
+
+**3. Envío correcto**
+
+![Envío correcto](clase5/img/envio_correcto.png)
+
+**4. XSS en contacto**
+
+![XSS en contacto](clase5/img/xss.png)
+
+**5. Búsqueda por GET**
+
+![Búsqueda catan](clase5/img/busqueda_get.png)
+
+**6. Búsqueda vacía**
+
+![Búsqueda vacía](clase5/img/busqueda_vacia.png)
+
+**7. XSS en el buscador**
+
+![XSS en el buscador](clase5/img/busqueda_xss.png)
