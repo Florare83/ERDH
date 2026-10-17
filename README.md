@@ -49,7 +49,7 @@ git clone https://github.com/Florare83/ERDH.git
 Copiar o clonar el proyecto dentro de la carpeta:
 C:\xampp\htdocs\
 3. Crear archivo .env
-Copiar .env.example y crear un archivo .env en la raíz del proyecto.
+Copiar .env.example y crear un archivo .env
 Configurar las variables correspondientes:
 APP_NAME="El Rincón de Hermes"
 APP_EMAIL="email@ejemplo.com"
@@ -59,29 +59,74 @@ Abrir el panel de XAMPP e iniciar:
 Apache
 5. Abrir el proyecto
 Ingresar desde el navegador a:
-http://localhost/ERDH/index.php
+http://localhost/ERDH/clase5/index.php
 
 ## Servidor local ejecutándose
-![Servidor](img/servidor_local.png)
+![Servidor](clase5/img/servidor_local.png)
 
 ## Estructura Modular (SSI):
 Utilización de las plantillas PHP reutilizables:
 header.php
 nav.php
 footer.php
-![SSI](img/ssi.png)
+![SSI](clase5/img/ssi.png)
 
 ## Navegación dinámica
 Las páginas utilizan un título dinámico mediante $titulo_pagina y determinan la sección activa del menú mediante $pagina_actual.
-![Navegacion1](img/navegacion_club.png)
-![Navegacion2](img/navegacion_juegos.png)
+![Navegacion1](clase5/img/navegacion_club.png)
+![Navegacion2](clase5/img/navegacion_juegos.png)
 
 ## Configuración de variables de entorno
 El archivo .env.example contiene las variables necesarias para la configuración del proyecto.
-![env](img/env.png)
+![env](clase5/img/env.png)
 
 ## Resultado de la prueba de accesibilidad
-![Accesibilidad](img/accesibilidad.png)
+![Accesibilidad](clase5/img/accesibilidad.png)
 
 ## Estructura
-![Estructura](img/estructura.png)
+![Estructura](clase5/img/estructura.png)
+
+## Clase 5 – Procesamiento de Formularios y Seguridad Web
+
+### Formulario POST – Contacto (`contacto.php`)
+Formulario con nombre, correo y mensaje. Valida en servidor que los campos
+no estén vacíos y que el correo tenga formato válido. Sanitiza con
+`trim()` y `htmlspecialchars()`. Ante errores conserva los datos ingresados.
+
+### Formulario GET – Buscador (`buscar.php`)
+Módulo de búsqueda que recibe el término por `$_GET['q']`, lo sanitiza,
+valida que no esté vacío y muestra los resultados coincidentes.
+
+### Seguridad
+Todas las variables de `$_POST` y `$_GET` se sanitizan con la función
+`limpiar()` (`includes/funciones.php`) para prevenir XSS.
+
+### Capturas
+
+**1. Contacto vacío: errores de validación**
+
+![Contacto vacío, aparecen los errores](clase5/img/error_validacion.png)
+
+**2. Correo inválido: error de formato y campos conservados**
+
+![Correo abc, error de formato y los campos se conservan](clase5/img/validacion_correo.png)
+
+**3. Envío correcto**
+
+![Envío correcto](clase5/img/envio_correcto.png)
+
+**4. XSS en contacto**
+
+![XSS en contacto](clase5/img/xss.png)
+
+**5. Búsqueda por GET**
+
+![Búsqueda catan](clase5/img/busqueda_get.png)
+
+**6. Búsqueda vacía**
+
+![Búsqueda vacía](clase5/img/busqueda_vacia.png)
+
+**7. XSS en el buscador**
+
+![XSS en el buscador](clase5/img/busqueda_xss.png)
