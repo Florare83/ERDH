@@ -197,13 +197,15 @@ Para volver a ejecutar las pruebas desde cero, importar de nuevo `schema.sql` (b
 - **Delete:** baja de un mensaje de prueba con `WHERE`.
 
 
-Clase 7 – Persistencia y Conexión PHP-MySQL Segura (TP7)
+## Clase 7 – Persistencia y Conexión PHP-MySQL Segura (TP7)
 
-Módulo de administración (CRUD) del catálogo de juegos de El Rincón de Hermes, conectado a MySQL mediante PDO e integrado al layout del sitio (Bootstrap + header.php, nav.php, footer.php).
+Módulo de administración (CRUD) del catálogo de **juegos** de El Rincón de Hermes, conectado a MySQL mediante **PDO** e integrado al layout del sitio (Bootstrap + `header.php`, `nav.php`, `footer.php`).
 
-La entidad gestionada es la tabla juegos del modelo diseñado en el TP6 (clase6/schema.sql), relacionada con editoriales y categorias.
+La entidad gestionada es la tabla `juegos` del modelo diseñado en el TP6 (`clase6/schema.sql`), relacionada con `editoriales` y `categorias`.
 
-Estructura del módulo
+### Estructura del módulo
+
+```
 clase7/
 ├── config/
 │   ├── env.php              # Carga de variables de entorno (.env)
@@ -222,16 +224,23 @@ clase7/
 │   └── _funciones_juegos.php# Captura y validación de datos
 ├── css/  img/  js/
 └── .env.example
-Requisitos
-XAMPP (Apache + MySQL) o Laragon
-PHP 8.x
-Base de datos rincon_de_hermes importada desde clase6/schema.sql
-Instalación y ejecución local
-Clonar o copiar el repositorio dentro de C:\xampp\htdocs\.
-Iniciar Apache y MySQL desde el panel de XAMPP.
-Abrir http://localhost/phpmyadmin, ir a Importar y cargar clase6/schema.sql.
-Cargar los datos iniciales ejecutando en la pestaña SQL la sección 1) CREATE - Datos iniciales de clase6/consultas.sql.
-Copiar clase7/.env.example como clase7/.env y completar las variables:
+```
+
+### Requisitos
+
+- XAMPP (Apache + MySQL) o Laragon
+- PHP 8.x
+- Base de datos `rincon_de_hermes` importada desde `clase6/schema.sql`
+
+### Instalación y ejecución local
+
+1. Clonar o copiar el repositorio dentro de `C:\xampp\htdocs\`.
+2. Iniciar **Apache** y **MySQL** desde el panel de XAMPP.
+3. Abrir `http://localhost/phpmyadmin`, ir a **Importar** y cargar `clase6/schema.sql`.
+4. Cargar los datos iniciales ejecutando en la pestaña **SQL** la sección `1) CREATE - Datos iniciales` de `clase6/consultas.sql`.
+5. Copiar `clase7/.env.example` como `clase7/.env` y completar las variables:
+
+```
 APP_NAME="El Rincón de Hermes"
 APP_EMAIL="email@ejemplo.com"
 APP_ENV=local
@@ -239,55 +248,61 @@ DB_HOST=localhost
 DB_NAME=rincon_de_hermes
 DB_USER=root
 DB_PASS=
-Abrir en el navegador:
+```
+
+6. Abrir en el navegador:
+
+```
 http://localhost/ERDH/clase7/admin/index.php
+```
 
-El archivo .env no se incluye en el repositorio (está en .gitignore). Las credenciales de la base de datos se leen únicamente desde ese archivo.
+> El archivo `.env` no se incluye en el repositorio (está en `.gitignore`). Las credenciales de la base de datos se leen únicamente desde ese archivo.
 
-Funcionalidades del CRUD
-Operación	Archivo	Descripción
-Read	admin/index.php	Lista los juegos con su editorial y categoría (INNER JOIN), ordenados del más reciente al más antiguo.
-Create	admin/crear.php	Formulario con selects de editorial y categoría cargados desde la BD. Valida en el servidor y guarda con INSERT.
-Update	admin/editar.php	Carga el registro por id, lo muestra en el formulario y lo actualiza con UPDATE ... WHERE id_juego = :id.
-Delete	admin/eliminar.php	Elimina por id con DELETE ... WHERE id_juego = :id, previa confirmación en el navegador.
+### Funcionalidades del CRUD
 
-Después de cada operación se redirige al listado con un mensaje de estado (?status=created|updated|deleted|...) que se traduce a un texto fijo del servidor; nunca se imprime directamente el valor recibido por URL.
+| Operación | Archivo | Descripción |
+|---|---|---|
+| **Read** | `admin/index.php` | Lista los juegos con su editorial y categoría (`INNER JOIN`), ordenados del más reciente al más antiguo. |
+| **Create** | `admin/crear.php` | Formulario con selects de editorial y categoría cargados desde la BD. Valida en el servidor y guarda con `INSERT`. |
+| **Update** | `admin/editar.php` | Carga el registro por `id`, lo muestra en el formulario y lo actualiza con `UPDATE ... WHERE id_juego = :id`. |
+| **Delete** | `admin/eliminar.php` | Elimina por `id` con `DELETE ... WHERE id_juego = :id`, previa confirmación en el navegador. |
 
-Validaciones del servidor
-El título es obligatorio y no puede superar los 100 caracteres.
-Editorial y categoría deben estar seleccionadas.
-La cantidad máxima de jugadores no puede ser menor que la mínima.
-La duración máxima no puede ser menor que la mínima.
-El precio y el stock no pueden ser negativos.
-Ante errores, el formulario conserva los datos ingresados y muestra la lista de problemas.
-Seguridad
+Después de cada operación se redirige al listado con un mensaje de estado (`?status=created|updated|deleted|...`) que se traduce a un texto fijo del servidor; nunca se imprime directamente el valor recibido por URL.
 
-Conexión segura (config/conexion.php)
+### Validaciones del servidor
 
-Instancia de PDO con ERRMODE_EXCEPTION, FETCH_ASSOC y EMULATE_PREPARES = false (preparación real en el servidor).
-Bloque try-catch con PDOException. El detalle técnico del error solo se muestra si APP_ENV=local.
-Credenciales almacenadas en .env, fuera del repositorio.
+- El título es obligatorio y no puede superar los 100 caracteres.
+- Editorial y categoría deben estar seleccionadas.
+- La cantidad máxima de jugadores no puede ser menor que la mínima.
+- La duración máxima no puede ser menor que la mínima.
+- El precio y el stock no pueden ser negativos.
+- Ante errores, el formulario conserva los datos ingresados y muestra la lista de problemas.
 
-Consultas preparadas (Prepared Statements)
+### Seguridad
 
-Todas las consultas (lectura, inserción, actualización y borrado) usan prepare() + execute() con parámetros nombrados (:titulo, :precio, :id, etc.).
-Ningún dato recibido por $_POST o $_GET se concatena dentro de una sentencia SQL.
+**Conexión segura (`config/conexion.php`)**
+- Instancia de PDO con `ERRMODE_EXCEPTION`, `FETCH_ASSOC` y `EMULATE_PREPARES = false` (preparación real en el servidor).
+- Bloque `try-catch` con `PDOException`. El detalle técnico del error solo se muestra si `APP_ENV=local`.
+- Credenciales almacenadas en `.env`, fuera del repositorio.
 
-Ejemplo (crear.php):
+**Consultas preparadas (Prepared Statements)**
+- Todas las consultas (lectura, inserción, actualización y borrado) usan `prepare()` + `execute()` con parámetros nombrados (`:titulo`, `:precio`, `:id`, etc.).
+- Ningún dato recibido por `$_POST` o `$_GET` se concatena dentro de una sentencia SQL.
 
-php
+Ejemplo (`crear.php`):
+
+```php
 $sql = "INSERT INTO juegos (titulo, id_editorial, ..., imagen)
         VALUES (:titulo, :id_editorial, ..., :imagen)";
 $stmt = $pdo->prepare($sql);
 $stmt->execute([':titulo' => $juego['titulo'], ...]);
+```
 
-Prevención de XSS
+**Prevención de XSS**
+- Todas las variables impresas en las vistas pasan por `htmlspecialchars()` mediante el helper `e()` (`ENT_QUOTES`, `UTF-8`).
+- Los datos se guardan "crudos" (solo `trim()`) y se escapan al momento de mostrarlos, para evitar el doble escapado en la base de datos.
 
-Todas las variables impresas en las vistas pasan por htmlspecialchars() mediante el helper e() (ENT_QUOTES, UTF-8).
-Los datos se guardan "crudos" (solo trim()) y se escapan al momento de mostrarlos, para evitar el doble escapado en la base de datos.
-
-Otras decisiones de seguridad
-
-El borrado se realiza mediante POST (no por un enlace GET), para que no pueda dispararse por error o desde un enlace externo.
-Los identificadores recibidos se validan con filter_input(..., FILTER_VALIDATE_INT).
-Si se intenta eliminar un juego con préstamos asociados, la violación de clave foránea (SQLSTATE 23000) se captura y se informa al usuario con un mensaje claro, sin errores sin controlar.
+**Otras decisiones de seguridad**
+- El borrado se realiza mediante **POST** (no por un enlace GET), para que no pueda dispararse por error o desde un enlace externo.
+- Los identificadores recibidos se validan con `filter_input(..., FILTER_VALIDATE_INT)`.
+- Si se intenta eliminar un juego con préstamos asociados, la violación de clave foránea (SQLSTATE `23000`) se captura y se informa al usuario con un mensaje claro, sin errores sin controlar.
