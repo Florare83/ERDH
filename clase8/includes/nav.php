@@ -84,6 +84,48 @@ $pagina_actual = $pagina_actual ?? basename($_SERVER['PHP_SELF']);
                     </a>
                 </li>
 
+                <?php if (isset($_SESSION['usuario_id'])): ?>
+
+                    <li class="nav-item">
+                        <a class="nav-link <?= $pagina_actual === 'dashboard.php' ? 'active' : '' ?>"
+                           href="<?= $ruta_base ?>dashboard.php">
+                            Hola, <?= htmlspecialchars($_SESSION['usuario_nombre']) ?>
+                        </a>
+                    </li>
+
+                    <?php if ($_SESSION['rol'] === 'admin'): ?>
+                        <li class="nav-item">
+                            <a class="nav-link <?= $pagina_actual === 'admin' ? 'active' : '' ?>"
+                               href="<?= $ruta_base ?>admin/admin_panel.php">
+                                Admin
+                            </a>
+                        </li>
+                    <?php endif; ?>
+
+                    <li class="nav-item">
+                        <form action="<?= $ruta_base ?>logout.php" method="POST" class="d-inline">
+                            <button type="submit" class="nav-link btn btn-link">Salir</button>
+                        </form>
+                    </li>
+
+                <?php else: ?>
+
+                    <li class="nav-item">
+                        <a class="nav-link <?= $pagina_actual === 'login.php' ? 'active' : '' ?>"
+                           href="<?= $ruta_base ?>login.php">
+                            Ingresar
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link <?= $pagina_actual === 'registro.php' ? 'active' : '' ?>"
+                           href="<?= $ruta_base ?>registro.php">
+                            Registrarse
+                        </a>
+                    </li>
+
+                <?php endif; ?>
+
             </ul>
         </div>
     </div>

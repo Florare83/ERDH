@@ -1,5 +1,5 @@
 <?php
-
+require_once __DIR__ . '/sesion.php';
 require_once __DIR__ . '/../config/env.php';
 
 $ruta_base = $ruta_base ?? ''
