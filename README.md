@@ -139,9 +139,9 @@ Diseño de la base de datos del proyecto **El Rincón de Hermes**, aplicando nor
 
 Carpeta [`clase6/`](clase6/):
 
-- [`NORMALIZACION.md`](tp6/NORMALIZACION.md): registro sin normalizar, proceso de 1FN, 2FN y 3FN, y listado de tablas con PK y FK.
-- [`schema.sql`](tp6/schema.sql): creación de la base `rincon_de_hermes`, las tablas, las claves foráneas y los índices.
-- [`consultas.sql`](tp6/consultas.sql): sentencias `INSERT`, `SELECT`, `UPDATE` y `DELETE` para probar la estructura con datos del proyecto.
+- [`NORMALIZACION.md`](clase6/NORMALIZACION.md): registro sin normalizar, proceso de 1FN, 2FN y 3FN, y listado de tablas con PK y FK.
+- [`schema.sql`](clase6/schema.sql): creación de la base `rincon_de_hermes`, las tablas, las claves foráneas y los índices.
+- [`consultas.sql`](clase6/consultas.sql): sentencias `INSERT`, `SELECT`, `UPDATE` y `DELETE` para probar la estructura con datos del proyecto.
 
 ### Tablas del esquema
 
@@ -340,7 +340,7 @@ Sanitiza con `htmlspecialchars`, valida en el servidor, comprueba que el email n
 ### Login y sesión
 Compara con `password_verify()`. Si es correcto, ejecuta `session_regenerate_id(true)` (contra Session Fixation) y guarda `usuario_id`, `usuario_nombre` y `rol` en `$_SESSION`. La cookie de sesión es `HttpOnly` y `SameSite=Lax`.
 
-![Login correcto](clase8/img/login.png)
+![Login correcto](clase8/img/inicio_sesion.png)
 ![Cookie de sesión](clase8/img/cookie_segura.png)
 
 ### Protección de rutas y roles
