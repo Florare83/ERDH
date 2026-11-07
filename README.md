@@ -306,3 +306,58 @@ $stmt->execute([':titulo' => $juego['titulo'], ...]);
 - El borrado se realiza mediante **POST** (no por un enlace GET), para que no pueda dispararse por error o desde un enlace externo.
 - Los identificadores recibidos se validan con `filter_input(..., FILTER_VALIDATE_INT)`.
 - Si se intenta eliminar un juego con préstamos asociados, la violación de clave foránea (SQLSTATE `23000`) se captura y se informa al usuario con un mensaje claro, sin errores sin controlar.
+
+
+
+## TP8 — Manejo de estado, sesiones y autenticación (`clase8/`)
+
+Módulo de registro, inicio y cierre de sesión en PHP + MySQL (PDO), con control de acceso por roles (`admin` / `usuario`), integrado en la aplicación principal.
+
+### Archivos principales
+| Archivo | Función |
+|---|---|
+| `registro.php` | Alta de usuarios con sanitización, email único y `password_hash` |
+| `login.php` | Verificación con `password_verify` y creación de la sesión |
+| `logout.php` | Cierre de sesión: vacía `$_SESSION`, borra la cookie y destruye la sesión |
+| `includes/sesion.php` | Inicio de sesión con cookie segura (HttpOnly, SameSite) |
+| `includes/auth_guard.php` | Guardián de rutas y control por rol |
+| `dashboard.php` | Vista protegida (cualquier usuario autenticado) |
+| `admin/admin_panel.php` | Vista protegida solo para `admin` |
+| `admin/*` | CRUD de juegos, ahora restringido al rol `admin` |
+| `sql/01_tabla_usuarios.sql` | Script de la tabla `usuarios` |
+
+### Base de datos
+Tabla `usuarios`: `id`, `nombre`, `email` (UNIQUE), `password` (VARCHAR 255, guarda el hash), `rol` (VARCHAR: `admin` / `usuario`), `created_at`.
+
+![Estructura de usuarios](clase8/img/tp8/01_estructura_usuarios.png)
+
+### Registro
+Sanitiza con `htmlspecialchars`, valida en el servidor, comprueba que el email no exista y guarda el hash con `password_hash($password, PASSWORD_BCRYPT)` mediante consultas preparadas.
+
+![Registro](clase8/img/tp8/02_registro_ok.png)
+![Hash en la base de datos](clase8/img/tp8/03_hash_en_bd.png)
+
+### Login y sesión
+Compara con `password_verify()`. Si es correcto, ejecuta `session_regenerate_id(true)` (contra Session Fixation) y guarda `usuario_id`, `usuario_nombre` y `rol` en `$_SESSION`. La cookie de sesión es `HttpOnly` y `SameSite=Lax`.
+
+![Login correcto](clase8/img/tp8/04_login_ok.png)
+![Cookie de sesión](clase8/img/tp8/05_cookie_httponly.png)
+
+### Protección de rutas y roles
+`auth_guard.php` redirige a `login.php?error=acceso_denegado` si no hay sesión. La función `requerir_rol('admin')` restringe `admin_panel.php` y el CRUD de juegos.
+
+![Acceso denegado](clase8/img/tp8/06_acceso_denegado.png)
+![Sin permiso](clase8/img/tp8/07_sin_permiso.png)
+![Panel admin](clase8/img/tp8/08_admin_panel.png)
+
+### Cierre de sesión
+`logout.php` vacía `$_SESSION`, elimina la cookie de sesión del navegador, ejecuta `session_destroy()` y redirige al login. El botón "Salir" es un formulario POST.
+
+![Menú con sesión iniciada](clase8/img/tp8/09_menu_logueado.png)
+![Logout](clase8/img/tp8/10_logout_ok.png)
+
+### Cómo ejecutarlo
+1. Importar `clase6/schema.sql` en phpMyAdmin y luego `clase8/sql/01_tabla_usuarios.sql`.
+2. Copiar `clase8/.env.example` a `clase8/.env` y completar las variables.
+3. Abrir `http://localhost/ERDH/clase8/registro.php`.
+4. Para crear un administrador: `UPDATE usuarios SET rol = 'admin' WHERE email = 'tu_email';`
