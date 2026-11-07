@@ -329,32 +329,31 @@ Módulo de registro, inicio y cierre de sesión en PHP + MySQL (PDO), con contro
 ### Base de datos
 Tabla `usuarios`: `id`, `nombre`, `email` (UNIQUE), `password` (VARCHAR 255, guarda el hash), `rol` (VARCHAR: `admin` / `usuario`), `created_at`.
 
-![Estructura de usuarios](clase8/img/tp8/01_estructura_usuarios.png)
+![Estructura de usuarios](clase8/img/estructura_tabla.png)
 
 ### Registro
 Sanitiza con `htmlspecialchars`, valida en el servidor, comprueba que el email no exista y guarda el hash con `password_hash($password, PASSWORD_BCRYPT)` mediante consultas preparadas.
 
-![Registro](clase8/img/tp8/02_registro_ok.png)
-![Hash en la base de datos](clase8/img/tp8/03_hash_en_bd.png)
+![Registro](clase8/img/registro.png)
+![Hash en la base de datos](clase8/img/hash.png)
 
 ### Login y sesión
 Compara con `password_verify()`. Si es correcto, ejecuta `session_regenerate_id(true)` (contra Session Fixation) y guarda `usuario_id`, `usuario_nombre` y `rol` en `$_SESSION`. La cookie de sesión es `HttpOnly` y `SameSite=Lax`.
 
-![Login correcto](clase8/img/tp8/04_login_ok.png)
-![Cookie de sesión](clase8/img/tp8/05_cookie_httponly.png)
+![Login correcto](clase8/img/login.png)
+![Cookie de sesión](clase8/img/cookie_segura.png)
 
 ### Protección de rutas y roles
 `auth_guard.php` redirige a `login.php?error=acceso_denegado` si no hay sesión. La función `requerir_rol('admin')` restringe `admin_panel.php` y el CRUD de juegos.
 
-![Acceso denegado](clase8/img/tp8/06_acceso_denegado.png)
-![Sin permiso](clase8/img/tp8/07_sin_permiso.png)
-![Panel admin](clase8/img/tp8/08_admin_panel.png)
+![Acceso denegado](clase8/img/sin_sesion.png)
+![Sin permiso](clase8/img/sin_permiso.png)
 
 ### Cierre de sesión
 `logout.php` vacía `$_SESSION`, elimina la cookie de sesión del navegador, ejecuta `session_destroy()` y redirige al login. El botón "Salir" es un formulario POST.
 
-![Menú con sesión iniciada](clase8/img/tp8/09_menu_logueado.png)
-![Logout](clase8/img/tp8/10_logout_ok.png)
+![Menú con sesión iniciada](clase8/img/login.png)
+![Logout](clase8/img/cerrar_sesion.png)
 
 ### Cómo ejecutarlo
 1. Importar `clase6/schema.sql` en phpMyAdmin y luego `clase8/sql/01_tabla_usuarios.sql`.
