@@ -360,3 +360,134 @@ Compara con `password_verify()`. Si es correcto, ejecuta `session_regenerate_id(
 2. Copiar `clase8/.env.example` a `clase8/.env` y completar las variables.
 3. Abrir `http://localhost/ERDH/clase8/registro.php`.
 4. Para crear un administrador: `UPDATE usuarios SET rol = 'admin' WHERE email = 'tu_email';`
+
+## TP9 — Comunicación asincrónica y APIs (AJAX & JSON) (`clase9/`)
+
+Se convirtió el buscador de juegos (`buscar.php`) en una búsqueda en tiempo real: el navegador consulta a un endpoint PHP mediante **Fetch API**, recibe la respuesta en formato **JSON** y actualiza solo la sección de resultados, sin recargar la página. Antes, el buscador filtraba un arreglo fijo de nombres; ahora consulta la tabla `juegos` de MySQL.
+
+### Archivos principales
+
+```
+clase9/
+├── api/
+│   └── buscar_juegos.php   # Endpoint: consulta MySQL y responde JSON
+├── buscar.php              # Vista: formulario + contenedor de resultados
+└── js/
+    └── main.js             # Fetch API, manejo de errores y renderizado del DOM
+```
+
+El resto del proyecto es el de `clase8/` (sesiones, roles y CRUD) sin cambios.
+
+### Endpoint (`api/buscar_juegos.php`)
+
+- Método: `GET`.
+- Parámetro: `q` (opcional). Si no se envía, devuelve los primeros 20 juegos ordenados por título.
+- Encabezado de respuesta: `Content-Type: application/json; charset=utf-8`.
+- Consulta con `JOIN` a `editoriales` y `categorias`, usando `prepare()` + `bindValue()` con parámetro nombrado `:q`. Ningún dato del usuario se concatena en el SQL.
+- Se escapan `%` y `_` del término (`addcslashes`) para que el usuario no pueda usarlos como comodines del `LIKE`.
+- `display_errors` se desactiva dentro del endpoint para que un aviso de PHP no se mezcle con el JSON.
+- Si la consulta falla, el detalle técnico se guarda con `error_log()` y al cliente solo se le informa un mensaje genérico.
+
+**Códigos de estado HTTP**
+
+| Código | Cuándo se devuelve |
+|---|---|
+| `200 OK` | Consulta exitosa. Si no hay coincidencias, `data` es un arreglo vacío |
+| `400 Bad Request` | `q` no es texto, tiene 1 solo carácter o supera los 50 caracteres |
+| `405 Method Not Allowed` | Se usa un método distinto de `GET` (incluye el encabezado `Allow: GET`) |
+| `500 Internal Server Error` | Falla la consulta a la base de datos (`PDOException`) |
+
+**Ejemplo de respuesta exitosa** (`GET api/buscar_juegos.php?q=cat`):
+
+```json
+{
+    "status": "success",
+    "total": 1,
+    "data": [
+        {
+            "id_juego": 5,
+            "titulo": "Catan",
+            "editorial": "Devir",
+            "categoria": "Familiar",
+            "jugadores_min": 2,
+            "jugadores_max": 6,
+            "duracion_min": 60,
+            "duracion_max": 120,
+            "edad_minima": 12,
+            "precio": 67888,
+            "imagen": "img/catan.webp"
+        }
+    ]
+}
+```
+
+**Ejemplo de respuesta de error** (`?q=a`, estado 400):
+
+```json
+{
+    "status": "error",
+    "message": "La búsqueda debe tener al menos 2 caracteres."
+}
+```
+
+### Consumo desde el frontend (`js/main.js`)
+
+- **Eventos capturados:**
+  - `input` sobre el campo de búsqueda, con *debounce* de 300 ms para no enviar una petición por cada tecla.
+  - `submit` del formulario, con `e.preventDefault()` para evitar la recarga de la página.
+- **Petición:** `fetch()` con `async/await` y `encodeURIComponent()` para el término.
+- **`AbortController`:** cancela la petición anterior cuando el usuario sigue escribiendo, evitando que una respuesta lenta y vieja pise a una más reciente.
+- **Manejo de errores:** bloque `try...catch` y verificación de `response.ok`. Se lee el JSON también en las respuestas 400/500 para mostrar el mensaje que envía el servidor. Un error de red (`TypeError`) muestra "No hay conexión con el servidor".
+- **Validación previa:** con un solo carácter no se consulta al servidor; se muestra "Escribí al menos 2 caracteres.".
+- **Carga inicial:** al abrir `buscar.php` se ejecuta `buscar('')` y se muestran los juegos sin que el usuario haga nada.
+
+### Manipulación dinámica del DOM
+
+La respuesta `res.data` se recorre con `forEach` y por cada juego se construye una tarjeta `.game-card` (la misma de las páginas de tienda), con imagen, título, editorial, jugadores, duración, edad y precio. Solo se reemplaza el contenido del contenedor `#resultados`; el resto de la página no se recarga.
+
+El estado de la búsqueda ("Buscando…", "N juego(s) encontrado(s).", errores) se informa en un párrafo con `role="status"` y `aria-live="polite"`, para que los lectores de pantalla anuncien los cambios.
+
+### Seguridad
+
+- **Consultas preparadas** en el endpoint (sin concatenar entradas del usuario).
+- **Validación en el servidor** del parámetro `q` (tipo, longitud mínima y máxima), sin depender de la validación del cliente.
+- **Prevención de XSS:** las tarjetas se arman con `createElement` y `textContent` en lugar de `innerHTML`. Si un título contuviera HTML o `<script>`, se mostraría como texto y no se ejecutaría. Por eso el endpoint no aplica `htmlspecialchars()`: el escape se realiza al momento de mostrar los datos, evitando duplicarlo.
+- **Errores controlados:** el detalle técnico de una falla de base de datos no se expone al navegador.
+
+### Capturas
+
+**1. Endpoint: respuesta `200 OK` con el listado de juegos en JSON**
+
+![Endpoint 200 con datos](clase9/img/200.png)
+
+**2. Endpoint: `400 Bad Request` ante un término de un solo carácter (`?q=a`)**
+
+![Endpoint 400](clase9/img/400.png)
+
+**3. Endpoint: `405 Method Not Allowed` al llamarlo con `POST` desde la consola**
+
+![Endpoint 405](clase9/img/405.png)
+
+**4. Buscador: resultados filtrados en pantalla al escribir `cat`**
+
+![Buscador filtrado](clase9/img/buscador_filtro.png)
+
+**5. Pestaña Network (Fetch/XHR): peticiones asincrónicas sin recarga de la página**
+
+![Peticiones Fetch en la pestaña Network](clase9/img/network_fetch.png)
+
+### Cómo ejecutarlo
+
+1. Tener la base de datos creada con `clase6/schema.sql` y los datos de `clase6/consultas.sql` (el endpoint consulta la tabla `juegos`).
+2. Copiar `clase9/.env.example` a `clase9/.env` y completar las variables, incluidas las de la base de datos (`DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASS`).
+3. Iniciar Apache y MySQL desde XAMPP.
+4. Abrir el buscador: `http://localhost/ERDH/clase9/buscar.php`.
+5. Probar el endpoint directamente:
+   - Listado: `http://localhost/ERDH/clase9/api/buscar_juegos.php`
+   - Búsqueda: `http://localhost/ERDH/clase9/api/buscar_juegos.php?q=cat`
+   - Error 400: `http://localhost/ERDH/clase9/api/buscar_juegos.php?q=a`
+   - Error 405, desde la consola del navegador (F12) estando en `buscar.php`:
+
+     ```js
+     fetch('api/buscar_juegos.php', { method: 'POST' }).then(r => console.log(r.status))
+     ```
