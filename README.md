@@ -491,3 +491,16 @@ El estado de la búsqueda ("Buscando…", "N juego(s) encontrado(s).", errores) 
      ```js
      fetch('api/buscar_juegos.php', { method: 'POST' }).then(r => console.log(r.status))
      ```
+
+## Módulo Laravel (clase10/laravel-eventos)
+
+```bash
+cd clase10/laravel-eventos
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan serve
+```
+
+Abrir `http://127.0.0.1:8000/eventos` y `http://127.0.0.1:8000/api/eventos`.
+Requiere MySQL con la base `rincon_de_hermes` importada.

@@ -155,10 +155,17 @@ class JuegoController
 
     private function validar(array $d): array
     {
-        // Copiá acá el cuerpo de validarJuego() de tu _funciones_juegos.php
         $errores = [];
-        if ($d['titulo'] === '') $errores[] = 'El título es obligatorio.';
-        // ... el resto igual que lo tenés
+        if ($d['titulo'] === '')                 $errores[] = 'El título es obligatorio.';
+        if (mb_strlen($d['titulo']) > 100)       $errores[] = 'El título no puede superar 100 caracteres.';
+        if ($d['id_editorial'] <= 0)             $errores[] = 'Elegí una editorial.';
+        if ($d['id_categoria'] <= 0)             $errores[] = 'Elegí una categoría.';
+        if ($d['jugadores_min'] < 1 || $d['jugadores_max'] < $d['jugadores_min'])
+                                                 $errores[] = 'La cantidad de jugadores no es válida.';
+        if ($d['duracion_min'] < 1 || $d['duracion_max'] < $d['duracion_min'])
+                                                 $errores[] = 'La duración no es válida.';
+        if ($d['precio'] < 0)                    $errores[] = 'El precio no puede ser negativo.';
+        if ($d['stock'] < 0)                     $errores[] = 'El stock no puede ser negativo.';
         return $errores;
     }
 }

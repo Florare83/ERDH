@@ -96,7 +96,7 @@ $pagina_actual = $pagina_actual ?? basename($_SERVER['PHP_SELF']);
                     <?php if ($_SESSION['rol'] === 'admin'): ?>
                         <li class="nav-item">
                             <a class="nav-link <?= $pagina_actual === 'admin' ? 'active' : '' ?>"
-                               href="<?= $ruta_base ?>admin/admin_panel.php">
+                               href="<?= $ruta_base ?>admin/index.php">
                                 Admin
                             </a>
                         </li>
