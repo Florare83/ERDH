@@ -492,15 +492,68 @@ El estado de la búsqueda ("Buscando…", "N juego(s) encontrado(s).", errores) 
      fetch('api/buscar_juegos.php', { method: 'POST' }).then(r => console.log(r.status))
      ```
 
-## Módulo Laravel (clase10/laravel-eventos)
+## TP10 — Arquitectura MVC y primer contacto con Laravel (`clase10/`)
+
+En esta clase se reorganizó el CRUD de juegos de la clase 8 siguiendo el patrón **MVC** en PHP puro, y se armó una aplicación mínima en **Laravel 12** (`laravel-eventos/`) que lista los eventos del club desde la misma base de datos `rincon_de_hermes`.
+
+### Parte 1 — CRUD de juegos con MVC
+
+```
+clase10/
+├── admin/
+│   └── index.php                    # Front controller: elige la acción según ?accion=
+└── app/
+    ├── Controllers/JuegoController.php   # Flujo, validación y redirecciones
+    ├── Models/Juego.php                  # Consultas PDO (único lugar con SQL)
+    └── Views/admin/juegos/               # index, crear, editar y _form
+```
+
+- **Front controller (`admin/index.php`):** exige rol `admin` y despacha con `match` a `index()`, `crear()`, `editar()` o `eliminar()`.
+- **Modelo (`Juego`):** todas las consultas usan `prepare()` + `execute()` con parámetros nombrados.
+- **Controlador (`JuegoController`):** toma los datos de `$_POST`, los valida y decide si guarda o vuelve a mostrar el formulario con los errores.
+- **Vistas:** solo imprimen; todo dato se escapa con `e()`.
+
+**Validaciones del servidor (`JuegoController::validar()`):**
+
+- El título es obligatorio y no puede superar los 100 caracteres.
+- Editorial y categoría deben estar seleccionadas.
+- Jugadores: el mínimo es al menos 1 y el máximo no puede ser menor que el mínimo.
+- Duración: el mínimo es al menos 1 y el máximo no puede ser menor que el mínimo.
+- El precio y el stock no pueden ser negativos.
+
+### Parte 2 — Laravel: eventos del club (`laravel-eventos/`)
+
+Aplicación mínima en Laravel 12 (PHP 8.2+) que lista los eventos de la tabla `eventos` de la base `rincon_de_hermes`, creada con `clase6/schema.sql`. Su README por defecto se eliminó: toda la documentación está en este archivo.
+
+| Ruta | Descripción |
+|---|---|
+| `GET /eventos` | Página HTML (Blade + Bootstrap) con los próximos eventos |
+| `GET /api/eventos` | Los mismos eventos en formato JSON |
+
+- `app/Models/Evento.php`: modelo Eloquent asociado a la tabla `eventos` y a su clave `id_evento`, que no siguen la convención de Laravel.
+- `app/Http/Controllers/EventoController.php`: ordena por fecha y hora de inicio.
+- `resources/views/eventos/index.blade.php`: vista con `@forelse`; `{{ }}` escapa la salida.
+- `routes/web.php`: define las rutas `/eventos` y `/api/eventos`.
+
+![Eventos en Laravel](clase10/img/laravel_eventos.png)
+
+### Cómo ejecutarlo
+
+**CRUD con MVC (XAMPP)**
+
+1. Tener importados `clase6/schema.sql`, los datos de `clase6/consultas.sql` y `clase10/sql/01_tabla_usuarios.sql`.
+2. Copiar `clase10/.env.example` a `clase10/.env` y completar las variables.
+3. Iniciar Apache y MySQL, y entrar con un usuario con rol `admin` a `http://localhost/ERDH/clase10/admin/index.php`.
+
+**Laravel (requiere PHP 8.2+ y Composer)**
 
 ```bash
 cd clase10/laravel-eventos
 composer install
 cp .env.example .env
 php artisan key:generate
+# revisar en .env: DB_DATABASE=rincon_de_hermes, DB_USERNAME y DB_PASSWORD
 php artisan serve
 ```
 
-Abrir `http://127.0.0.1:8000/eventos` y `http://127.0.0.1:8000/api/eventos`.
-Requiere MySQL con la base `rincon_de_hermes` importada.
+Abrir `http://127.0.0.1:8000/eventos` (HTML) y `http://127.0.0.1:8000/api/eventos` (JSON).
